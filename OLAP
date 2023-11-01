@@ -1,0 +1,74 @@
+
+CREATE TABLE "employee" (
+	"emp_id"	INTEGER NOT NULL,
+	"emp_name"	TEXT,
+	"dept_id"	INTEGER,
+	PRIMARY KEY("emp_id")
+);
+
+
+CREATE TABLE "departments" (
+	"dept_id"	INTEGER NOT NULL,
+	"dept_name"	TEXT,
+	PRIMARY KEY("dept_id")
+);
+
+CREATE TABLE "salaries" (
+	"emp_id"	INTEGER,
+	"salary"	INTEGER,
+	"year"	INTEGER
+);
+
+
+INSERT INTO "employee" ("emp_id", "emp_name", "dept_id") VALUES ('1', 'Alice', '101');
+INSERT INTO "employee" ("emp_id", "emp_name", "dept_id") VALUES ('2', 'Bob', '102');
+INSERT INTO "employee" ("emp_id", "emp_name", "dept_id") VALUES ('3', 'Charlie', '101');
+INSERT INTO "employee" ("emp_id", "emp_name", "dept_id") VALUES ('4', 'David', '103');
+INSERT INTO "employee" ("emp_id", "emp_name", "dept_id") VALUES ('5', 'Sriya', '102');
+
+
+
+INSERT INTO "departments" ("dept_id", "dept_name") VALUES ('101', 'HR');
+INSERT INTO "departments" ("dept_id", "dept_name") VALUES ('102', 'Engineering');
+INSERT INTO "departments" ("dept_id", "dept_name") VALUES ('103', 'Marketing');
+INSERT INTO "departments" ("dept_id", "dept_name") VALUES ('104', 'Finances');
+INSERT INTO "departments" ("dept_id", "dept_name") VALUES ('105', 'Sales');
+
+
+
+INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('1', '60000', '2022');
+INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('2', '75000', '2022');
+INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('3', '55000', '2021');
+INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('4', '70000', '2022');
+INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('5', '72000', '2022');
+
+
+1. Roll-up - Total salary by department:
+SELECT d.dept_name, SUM(s.salary) AS total_salary
+FROM departments d
+INNER JOIN employee e ON d.dept_id = e.dept_id
+INNER JOIN salaries s ON e.emp_id = s.emp_id
+GROUP BY d.dept_name;
+
+2. Drill-down - Salary details by employee within a department:
+SELECT d.dept_name, e.emp_name, s.salary
+FROM departments d
+INNER JOIN employee e ON d.dept_id = e.dept_id
+INNER JOIN salaries s ON e.emp_id = s.emp_id
+WHERE d.dept_name = 'Your_Department_Name';
+
+3. Slice - Total salary by department for a specific year (2022):
+SELECT d.dept_name, SUM(s.salary) AS total_salary
+FROM departments d
+INNER JOIN employee e ON d.dept_id = e.dept_id
+INNER JOIN salaries s ON e.emp_id = s.emp_id
+WHERE s.year = 2022
+GROUP BY d.dept_name;
+
+
+4. Dice - Total salary by department and year:
+SELECT d.dept_name, s.year, SUM(s.salary) AS total_salary
+FROM departments d
+INNER JOIN employee e ON d.dept_id = e.dept_id
+INNER JOIN salaries s ON e.emp_id = s.emp_id
+GROUP BY d.dept_name, s.year;

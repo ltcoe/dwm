@@ -1,0 +1,129 @@
+
+
+CREATE TABLE "customer dimension" (
+	"Customer id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	"Address"	TEXT,
+	"City id"	INTEGER NOT NULL,
+	PRIMARY KEY("Customer id")
+);
+
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City id") VALUES (160,"Siddhant","bhivandi bypass",51);
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City id") VALUES (159,"Kunal","milap nagar",52);
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City id") VALUES (158,"Prarthana","kala talav",53);
+
+
+CREATE TABLE "City Dimension" (
+	"City id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	"State"	TEXT,
+	"Zip"	INTEGER,
+	PRIMARY KEY("City id")
+);
+
+
+INSERT INTO "City Dimension" ("City id", "Name", "State", "Zip") VALUES ('51', 'Dombivli', 'Maharashtra', '421203');
+INSERT INTO "City Dimension" ("City id", "Name", "State", "Zip") VALUES ('52', 'Pune', 'Maharashtra', '456517');
+INSERT INTO "City Dimension" ("City id", "Name", "State", "Zip") VALUES ('53', 'Delhi', 'Haryana', '35465');
+
+
+CREATE TABLE "Product Dimension" (
+	"Product id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	"Description"	TEXT,
+	"Price"	NUMERIC,
+	"Brand id"	INTEGER,
+	PRIMARY KEY("Product id")
+);
+
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand id") VALUES (201,"Iphone 14","Smart phone","70000",51);
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand id") VALUES (202,"Samsung S21","Smart phone","60000",52);
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand id") VALUES (203,"Motorola edge30","Smart phone","35000",53);
+
+
+CREATE TABLE "Brand dimensions" (
+	"Brand id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	PRIMARY KEY("Brand id")
+);
+
+
+INSERT INTO "Brand dimensions" ("Brand id", "Name") VALUES ('51', 'Apple');
+INSERT INTO "Brand dimensions" ("Brand id", "Name") VALUES ('52', 'Samsung');
+INSERT INTO "Brand dimensions" ("Brand id", "Name") VALUES ('53', 'Motorola');
+
+
+
+CREATE TABLE "Date Dimension" (
+	"Date id"	INTEGER NOT NULL,
+	"Year"	INTEGER,
+	"Month id"	INTEGER,
+	"Week id"	INTEGER,
+	PRIMARY KEY("Date id")
+);
+
+
+INSERT INTO "Date Dimension"("Date id","Year","Month id","Week id") VALUES (1,2003,51,61);
+
+INSERT INTO "Date Dimension"("Date id","Year","Month id","Week id") VALUES (2,2012,52,62);
+
+INSERT INTO "Date Dimension"("Date id","Year","Month id","Week id") VALUES (3,2020,53,63);
+
+
+
+
+CREATE TABLE "Month dimension" (
+	"Month id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	PRIMARY KEY("Month id")
+);
+
+INSERT INTO "Month dimension" ("Month id", "Name") VALUES ('51', 'April');
+INSERT INTO "Month dimension" ("Month id", "Name") VALUES ('52', 'June');
+INSERT INTO "Month dimension" ("Month id", "Name") VALUES ('53', 'Jan');
+
+
+
+CREATE TABLE "Week Dimension" (
+	"Week id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	PRIMARY KEY("Week id")
+);
+
+INSERT INTO "Week Dimension" ("Week id", "Name") VALUES ('61', '1st week');
+INSERT INTO "Week Dimension" ("Week id", "Name") VALUES ('62', '4th weak');
+INSERT INTO "Week Dimension" ("Week id", "Name") VALUES ('63', '2nd weak');
+
+CREATE TABLE "Store dimension" (
+	"Store id"	INTEGER NOT NULL,
+	"City"	TEXT,
+	"State id"	INTEGER,
+	"District"	TEXT,
+	"Zip"	INTEGER
+);
+
+INSERT INTO "Store dimension"("Store id","City","State id","District","Zip") VALUES (111,"Vashi",71,"Thane","402107");
+
+INSERT INTO "Store dimension"("Store id","City","State id","District","Zip") VALUES (112,"Thane",71,"Thane","402001");
+
+INSERT INTO "Store dimension"("Store id","City","State id","District","Zip") VALUES (113,"Panvel",71,"Raigad","404023");
+
+
+CREATE TABLE "State dimension" (
+	"State id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	PRIMARY KEY("State id")
+);
+
+
+INSERT INTO "State dimension" ("State id", "Name") VALUES ('71', 'Maharashtra');
+INSERT INTO "State dimension" ("State id", "Name") VALUES ('72', 'Gujrat');
+INSERT INTO "State dimension" ("State id", "Name") VALUES ('73', 'Panjab');
+
+

@@ -1,0 +1,88 @@
+
+CREATE TABLE "customer dimension" (
+	"Customer id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	"Address"	TEXT,
+	"City id"	TEXT,
+	PRIMARY KEY("Customer id")
+);
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City") VALUES (160,"Siddhant","bhivandi bypass","Bhivandi");
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City") VALUES (159,"Kunal","milap nagar","Dombivli");
+
+INSERT INTO "customer dimension"("Customer id","Name","Address","City") VALUES (158,"Prarthana","kala talav","Kalyan");
+
+
+
+
+
+CREATE TABLE "Date Dimension" (
+	"Date id"	INTEGER NOT NULL,
+	"Year"	INTEGER,
+	"Month"	INTEGER,
+	"Week"	INTEGER,
+	PRIMARY KEY("Date id")
+);
+
+
+INSERT INTO "Date Dimension"("Date id","Year","Month","Week") VALUES (1,2003,10,2);
+
+INSERT INTO "Date Dimension"("Date id","Year","Month","Week") VALUES (2,2012,04,3);
+
+INSERT INTO "Date Dimension"("Date id","Year","Month","Week") VALUES (3,2020,09,1);
+
+
+
+
+
+CREATE TABLE "Store dimension" (
+	"Store id"	INTEGER NOT NULL,
+	"City"	TEXT,
+	"State"	TEXT,
+	"District"	TEXT,
+	"Zip"	INTEGER
+);
+
+INSERT INTO "Store dimension"("Store id","City","State","District","Zip") VALUES (111,"Vashi","Maharashtra","Thane","402107");
+
+INSERT INTO "Store dimension"("Store id","City","State","District","Zip") VALUES (112,"Thane","Maharashtra","Thane","402001");
+
+INSERT INTO "Store dimension"("Store id","City","State","District","Zip") VALUES (113,"Panvel","Maharashtra","Raigad","404023");
+
+
+
+CREATE TABLE "Product Dimension" (
+	"Product id"	INTEGER NOT NULL,
+	"Name"	TEXT,
+	"Description"	TEXT,
+	"Price"	NUMERIC,
+	"Brand"	TEXT,
+	PRIMARY KEY("Product id")
+);
+
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand") VALUES (201,"Iphone 14","Smart phone","70000","Apple");
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand") VALUES (202,"Iphone 12","Smart phone","45000","Apple");
+
+INSERT INTO "Product Dimension"("Product id","Name","Description","Price","Brand") VALUES (203,"Iphone 13 pro max","Smart phone","120000","Apple");
+
+
+
+CREATE TABLE "Sales Fact" (
+	"Sales id"	INTEGER NOT NULL,
+	"Customer id"	INTEGER NOT NULL,
+	"Product id"	INTEGER NOT NULL,
+	"Date id"	INTEGER NOT NULL,
+	"Store id"	INTEGER NOT NULL,
+	"Sales Units"	INTEGER,
+	PRIMARY KEY("Sales id")
+);
+
+
+INSERT INTO "Sales Fact"("Sales id","Customer id","Product id","Date id","Store id","Sales Units") VALUES (101,160,201,1,111,22);
+
+INSERT INTO "Sales Fact"("Sales id","Customer id","Product id","Date id","Store id","Sales Units") VALUES (102,159,202,2,112,30);
+
+INSERT INTO "Sales Fact"("Sales id","Customer id","Product id","Date id","Store id","Sales Units") VALUES (103,158,203,3,113,52);
