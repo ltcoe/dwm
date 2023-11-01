@@ -43,21 +43,21 @@ INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('4', '70000', '2022'
 INSERT INTO "salaries" ("emp_id", "salary", "year") VALUES ('5', '72000', '2022');
 
 
-1. Roll-up - Total salary by department:
+--1. Roll-up - Total salary by department:
 SELECT d.dept_name, SUM(s.salary) AS total_salary
 FROM departments d
 INNER JOIN employee e ON d.dept_id = e.dept_id
 INNER JOIN salaries s ON e.emp_id = s.emp_id
 GROUP BY d.dept_name;
 
-2. Drill-down - Salary details by employee within a department:
+--2. Drill-down - Salary details by employee within --a department:
 SELECT d.dept_name, e.emp_name, s.salary
 FROM departments d
 INNER JOIN employee e ON d.dept_id = e.dept_id
 INNER JOIN salaries s ON e.emp_id = s.emp_id
 WHERE d.dept_name = 'Your_Department_Name';
 
-3. Slice - Total salary by department for a specific year (2022):
+--3. Slice - Total salary by department for a --specific year (2022):
 SELECT d.dept_name, SUM(s.salary) AS total_salary
 FROM departments d
 INNER JOIN employee e ON d.dept_id = e.dept_id
@@ -66,7 +66,7 @@ WHERE s.year = 2022
 GROUP BY d.dept_name;
 
 
-4. Dice - Total salary by department and year:
+--4. Dice - Total salary by department and year:
 SELECT d.dept_name, s.year, SUM(s.salary) AS total_salary
 FROM departments d
 INNER JOIN employee e ON d.dept_id = e.dept_id
